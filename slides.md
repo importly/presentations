@@ -298,7 +298,7 @@ layout: section
 <div class="kv" style="--k: 3rem">
 <div class="muted">1</div><div><b>Open the link</b> <span class="muted">and sign in with a Google account</span></div>
 <div class="muted">2</div><div><b>File, Save a copy in Drive</b> <span class="muted">so you can edit and run it</span></div>
-<div class="muted">3</div><div><b>Run a cell</b> <span class="muted">by clicking it and pressing Shift + Enter. If Colab warns the notebook isn't from Google, click Run anyway.</span></div>
+<div class="muted">3</div><div><b>Run a cell</b> <span class="muted">by clicking it and pressing Shift + Enter or the run button. If Colab warns the notebook isn't from Google, click Run anyway.</span></div>
 </div>
 
 <p class="mt-8">Nothing to install. Colab already has <code>requests</code>, <mark>the standard Python library for HTTP</mark>.</p>
@@ -333,7 +333,7 @@ print(joke["setup"], "...", joke["punchline"])
 import requests
 
 params = {
-    "latitude": 29.65,
+    "latitude": 29.65,     # guess where this is
     "longitude": -82.32,
     "current": "temperature_2m,wind_speed_10m",
 }
@@ -396,8 +396,8 @@ print(r.json())        # your post, plus an id
 ```python {all|3-5|7-10}
 import requests
 
-# note the typo in the name
-url = "https://pokeapi.co/api/v2/pokemon/pikachuu"
+# "idk" isn't a Pokemon
+url = "https://pokeapi.co/api/v2/pokemon/idk"
 r = requests.get(url, timeout=10)
 
 if r.status_code == 200:
@@ -515,7 +515,7 @@ MODEL = "gemini-2.5-flash"
 url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
 
 headers = {"x-goog-api-key": API_KEY}
-body = {"contents": [{"parts": [{"text": "Explain APIs in two sentences"}]}]}
+body = {"contents": [{"parts": [{"text": "Explain what an API is in two sentences."}]}]}
 r = requests.post(url, headers=headers, json=body, timeout=60)
 answer = r.json()["candidates"][0]["content"]["parts"][0]["text"]
 print(answer)
@@ -539,7 +539,7 @@ print(answer)
 poke = requests.get("https://pokeapi.co/api/v2/pokemon/gengar", timeout=10).json()
 types = [t["type"]["name"] for t in poke["types"]]
 
-prompt = f"Write a short poem about {poke['name']}, a {'/'.join(types)} type Pokemon."
+prompt = f"who is {poke['name']}, a {'/'.join(types)} type Pokemon."
 print(ask_ai(prompt))
 ```
 
