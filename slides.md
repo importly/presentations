@@ -140,7 +140,7 @@ layout: section
 # Parts of a URL
 
 <div class="text-xl mono mt-10 mb-12 whitespace-nowrap">
-<span v-mark.underline="{ at: 1, color: '#f87171' }">https://</span><span v-mark.underline="{ at: 2, color: '#fbbf24' }">api.open-meteo.com</span><span v-mark.underline="{ at: 3, color: '#4ade80' }">/v1/forecast</span><span v-mark.underline="{ at: 4, color: '#5eadf2' }">?latitude=28.6&amp;longitude=77.2</span>
+<span v-mark.underline="{ at: 1, color: '#f87171' }">https://</span><span v-mark.underline="{ at: 2, color: '#fbbf24' }">api.open-meteo.com</span><span v-mark.underline="{ at: 3, color: '#4ade80' }">/v1/forecast</span><span v-mark.underline="{ at: 4, color: '#5eadf2' }">?latitude=29.65&amp;longitude=-82.32</span>
 </div>
 
 <div class="kv" style="--k: 12rem">
@@ -293,8 +293,7 @@ layout: section
 
 # Open the notebook
 
-<!-- Replace the link below with your Colab share link (Share > Anyone with the link > Viewer) -->
-<div class="text-3xl font-semibold tracking-tight mt-6 mb-10 amber">your-colab-link-here</div>
+<a href="https://colab.research.google.com/drive/1n0jvRaTMW3fNlgJy0X0kRUvITvte8arK?usp=sharing" target="_blank" class="block text-xl mono amber break-all mt-6 mb-10 !no-underline">colab.research.google.com/drive/1n0jvRaTMW3fNlgJy0X0kRUvITvte8arK</a>
 
 <div class="kv" style="--k: 3rem">
 <div class="muted">1</div><div><b>Open the link</b> <span class="muted">and sign in with a Google account</span></div>
@@ -334,8 +333,8 @@ print(joke["setup"], "...", joke["punchline"])
 import requests
 
 params = {
-    "latitude": 28.61,
-    "longitude": 77.21,
+    "latitude": 29.65,
+    "longitude": -82.32,
     "current": "temperature_2m,wind_speed_10m",
 }
 url = "https://api.open-meteo.com/v1/forecast"
@@ -350,7 +349,7 @@ print(data["current"]["temperature_2m"], "°C")
 
 Put options in a dict and pass it as `params`. `requests` builds the URL and escapes special characters.
 
-<div class="aside mt-6 mono break-all">.../forecast?latitude=28.61&amp;longitude=77.21&amp;current=temperature_2m,wind_speed_10m</div>
+<div class="aside mt-6 mono break-all">.../forecast?latitude=29.65&amp;longitude=-82.32&amp;current=temperature_2m,wind_speed_10m</div>
 
 </div>
 </div>
