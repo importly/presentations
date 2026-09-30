@@ -1,0 +1,453 @@
+/* Visual language borrowed from aryanthakur.com (warm near-black, Geist + Fira Code,
+   list rows instead of cards, hairline rules, muted secondary text, colour on words
+   not boxes), keeping the theme's coloured tape headings. */
+
+:root {
+  --bg: #0d0d0c;
+  --fg: #f2efe7;
+  --muted: #a6a097;
+  --line: #2b2926;
+  --line-strong: #423e3a;
+  --highlight: #ffd34d57;
+  --code-bg: #ffffff09;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --red: #f87171;
+  --blue: #5eadf2;
+
+  --slidev-theme-background: var(--bg);
+  --slidev-theme-color: var(--fg);
+  --slidev-theme-accents-vulcan: var(--bg);
+  --slidev-theme-code-background: var(--code-bg);
+  --slidev-theme-code-border: var(--line);
+  --slidev-theme-font-size: 1.15em;
+  --slidev-theme-code-font-size: 14px;
+  --slidev-code-font-family: "Fira Code", ui-monospace, monospace;
+}
+
+.slidev-layout,
+.dark #slide-content,
+.dark .bg-main {
+  background: var(--bg) !important;
+  color: var(--fg);
+  font-family: "Geist", -apple-system, "Segoe UI", sans-serif;
+}
+
+.slidev-layout {
+  padding: 3rem 4.5rem !important;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- headings: keep the tape, use Geist ---------- */
+
+.slidev-layout h1 {
+  font-size: 2em !important;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.1rem !important;
+}
+
+.slidev-layout h2 {
+  font-size: 1em !important;
+  font-weight: 600;
+  margin: 1.6rem 0 0.6rem;
+}
+
+.slidev-layout h1 + p {
+  opacity: 1 !important;
+}
+
+.slidev-layout p {
+  margin: 0.55em 0;
+}
+
+.slidev-layout strong,
+.slidev-layout b {
+  font-weight: 600;
+}
+
+.slidev-layout mark {
+  background: linear-gradient(transparent 55%, var(--highlight) 55%);
+  color: inherit;
+  padding: 0 0.05em;
+}
+
+/* ---------- lists ---------- */
+
+.slidev-layout ul,
+.slidev-layout ol {
+  padding-left: 1.2em;
+}
+
+.slidev-layout li {
+  margin: 0.4em 0;
+}
+
+.slidev-layout li::marker {
+  color: var(--muted);
+}
+
+/* ---------- code ---------- */
+
+.slidev-layout :not(pre) > code {
+  background: transparent !important;
+  outline: none !important;
+  padding: 0;
+  font-family: "Fira Code", monospace;
+  font-size: 0.86em;
+  color: var(--fg);
+}
+
+.slidev-layout :not(pre) > code::before,
+.slidev-layout :not(pre) > code::after {
+  content: none !important;
+}
+
+.slidev-layout .slidev-code {
+  background: var(--code-bg) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 4px !important;
+  padding: 1em 1.2em !important;
+}
+
+.slidev-layout .slidev-code code {
+  font-family: "Fira Code", monospace !important;
+  line-height: 1.65;
+}
+
+/* ---------- tables: hairlines only ---------- */
+
+.slidev-layout table {
+  width: 100%;
+  font-size: 0.88em;
+  border-collapse: collapse;
+}
+
+.slidev-layout th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line-strong);
+  padding: 0.5em 0.9em 0.5em 0;
+}
+
+.slidev-layout td {
+  padding: 0.6em 0.9em 0.6em 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.slidev-layout tr {
+  border: none;
+}
+
+/* ---------- building blocks ---------- */
+
+.muted { color: var(--muted); }
+.small { font-size: 0.82em; }
+.mono  { font-family: "Fira Code", monospace; }
+
+.sub {
+  color: var(--muted);
+  font-size: 1.05em;
+  max-width: 40em;
+}
+
+/* list rows: title + muted description, optional right-aligned meta */
+.rows {
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 2rem;
+  padding: 0.7em 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.row .t { font-weight: 600; }
+.row .d { grid-column: 1; color: var(--muted); font-size: 0.9em; }
+.row .m { grid-row: 1; grid-column: 2; color: var(--muted); font-size: 0.85em; text-align: right; }
+
+/* two-column key / value rows */
+.kv {
+  display: grid;
+  grid-template-columns: var(--k, 9rem) 1fr;
+  border-top: 1px solid var(--line);
+}
+
+.kv > * {
+  padding: 0.65em 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.kv > :nth-child(odd) {
+  padding-right: 1.5rem;
+}
+
+.kv .d { color: var(--muted); }
+
+/* outlined pill tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.15em 0.85em;
+  font-size: 0.75em;
+}
+
+/* colour on words, like easy / medium / hard on the site */
+.green { color: var(--green); }
+.amber { color: var(--amber); }
+.red   { color: var(--red); }
+.blue  { color: var(--blue); }
+
+/* margin note */
+.aside {
+  color: var(--muted);
+  font-size: 0.85em;
+  border-left: 1px solid var(--line-strong);
+  padding-left: 1rem;
+}
+
+/* request / response diagram, drawn with rules */
+.flow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.flow .node {
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 0.8em 1.2em;
+  font-weight: 600;
+  min-width: 8.5em;
+}
+
+.flow .node span {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.75em;
+}
+
+.flow .wires {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2em;
+}
+
+.flow .wire {
+  position: relative;
+  border-top: 1px solid var(--muted);
+}
+
+.flow .wire.back {
+  border-top-style: dashed;
+}
+
+.flow .wire > div {
+  position: absolute;
+  bottom: 0.45em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Fira Code", monospace;
+  font-size: 0.66em;
+  white-space: nowrap;
+}
+
+.flow .wire.fwd  { margin-right: 9px; }
+.flow .wire.back { margin-left: 9px; }
+
+.flow .wire::after {
+  content: "";
+  position: absolute;
+  top: -4.5px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.flow .wire.fwd::after  { right: -9px; border-left: 9px solid var(--muted); }
+.flow .wire.back::after { left: -9px;  border-right: 9px solid var(--muted); }
+
+/* ---------- cover + section ---------- */
+
+.slidev-layout.cover::before {
+  display: none !important;
+}
+
+.slidev-layout.cover h1 {
+  font-size: 3.2em !important;
+  white-space: nowrap;
+}
+
+.slidev-layout.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slidev-layout.section h1 {
+  font-size: 2.8em !important;
+}
+
+/* let grid columns shrink so code blocks don't squeeze their neighbours */
+.slidev-layout .grid > * {
+  min-width: 0;
+}
+
+.slidev-layout.cover .slidev-code code {
+  font-size: 13px !important;
+}
+
+.rows.compact .row {
+  padding: 0.45em 0;
+}
+
+/* table like the one on the site's design-references page:
+   no header row, regular weight, hairline under each row */
+.slidev-layout table.plain {
+  font-size: 0.85em;
+}
+
+.slidev-layout table.plain td {
+  padding: 0.7em 1.8em 0.7em 0.7em;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.4;
+}
+
+
+.slidev-layout table.plain td:first-child {
+  width: 12rem;
+}
+
+/* slides don't scroll: never show scrollbars on code blocks */
+.slidev-layout .slidev-code,
+.slidev-layout pre {
+  overflow: hidden !important;
+  scrollbar-width: none;
+}
+
+.slidev-layout .slidev-code::-webkit-scrollbar,
+.slidev-layout pre::-webkit-scrollbar {
+  display: none;
+}
+
+/* "what is an API" picture: computer <-> server with moving packets */
+.talk {
+  display: grid;
+  grid-template-columns: 11rem 1fr 11rem;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+.talk .end {
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.talk .end svg {
+  width: 6.5rem;
+  height: 6.5rem;
+  margin: 0 auto 0.5rem;
+}
+
+.talk .lanes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.talk .api-tag {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
+}
+
+.talk .lane {
+  position: relative;
+  border-top: 1.5px solid var(--muted);
+}
+
+.talk .lane.back {
+  border-top-style: dashed;
+}
+
+/* arrowheads */
+/* the head sits just past the end of the line, so the two never overlap;
+   lines are shortened by the head length so the tips still line up */
+.talk .lane.fwd  { margin-right: 11px; }
+.talk .lane.back { margin-left: 11px; }
+
+.talk .lane::after {
+  content: "";
+  position: absolute;
+  top: -5.75px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.talk .lane.fwd::after  { right: -11px; border-left: 11px solid var(--muted); }
+.talk .lane.back::after { left: -11px;  border-right: 11px solid var(--muted); }
+
+.talk .lbl {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.75em;
+}
+
+.talk .lbl.above { bottom: 0.4em; }
+.talk .lbl.below { top: 0.4em; }
+
+.talk .packet {
+  position: absolute;
+  top: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.talk .packet.req {
+  background: var(--fg);
+  animation: to-server 4s ease-in-out infinite;
+}
+
+.talk .packet.res {
+  background: #ffe45e;
+  animation: to-client 4s ease-in-out 2s infinite;
+  opacity: 0;
+}
+
+@keyframes to-server {
+  0%   { left: 0;                  opacity: 0; }
+  10%  {                           opacity: 1; }
+  38%  {                           opacity: 1; }
+  45%, 100% { left: calc(100% - 26px); opacity: 0; }
+}
+
+@keyframes to-client {
+  0%   { left: calc(100% - 9px);   opacity: 0; }
+  10%  {                           opacity: 1; }
+  38%  {                           opacity: 1; }
+  45%, 100% { left: 17px;          opacity: 0; }
+}
+
+.slidev-layout table.plain td:first-child {
+  font-weight: 600;
+}
